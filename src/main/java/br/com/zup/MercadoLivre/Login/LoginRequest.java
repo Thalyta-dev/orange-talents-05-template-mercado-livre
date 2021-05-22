@@ -23,7 +23,6 @@ public class LoginRequest {
 
     @NotNull
     @Length(min = 8, message = "A senha não tem o tamanho necessário de 8 caracters")
-
     private String senha;
 
     private LocalDateTime localDateTime = LocalDateTime.now();

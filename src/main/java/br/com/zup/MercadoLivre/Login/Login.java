@@ -10,10 +10,13 @@ public class Login {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = true)
     private String email;
 
+    @Column(nullable = true)
     private String senha;
 
+    @Column(nullable = true)
     private LocalDateTime localDateTime;
 
     public Login(String email, String senha, LocalDateTime localDateTime) {
