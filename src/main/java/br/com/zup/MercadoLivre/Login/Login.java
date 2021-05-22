@@ -1,5 +1,7 @@
 package br.com.zup.MercadoLivre.Login;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -19,7 +21,7 @@ public class Login {
 
     public Login(String email, String senha, LocalDateTime localDateTime) {
         this.email = email;
-        this.senha = senha;
+        this.senha =  new BCryptPasswordEncoder().encode(senha);
         this.localDateTime = localDateTime;
     }
 
