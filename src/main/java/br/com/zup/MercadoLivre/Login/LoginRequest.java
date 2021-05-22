@@ -3,7 +3,9 @@ package br.com.zup.MercadoLivre.Login;
 
 
 
+import br.com.zup.MercadoLivre.Validacoes.UniqueValue;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -15,11 +17,13 @@ public class LoginRequest {
 
     @Email
     @NotEmpty
+    @UniqueValue(domainClass = Login.class, fieldName = "email", message = "O email de login já está em uso")
     private String email;
 
 
     @NotNull
-    @Length(min = 8, message = "A senha não tem o tamanho necessario")
+    @Length(min = 8, message = "A senha não tem o tamanho necessário de 8 caracters")
+
     private String senha;
 
     private LocalDateTime localDateTime = LocalDateTime.now();
@@ -37,6 +41,6 @@ public class LoginRequest {
     }
 
     public Login toModel(){
-        return new Login(this.email, this.senha, this.localDateTime);
+        return new Login(this.email, new BCryptPasswordEncoder().encode(this.senha), this.localDateTime);
     }
 }
