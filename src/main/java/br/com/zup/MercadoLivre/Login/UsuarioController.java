@@ -10,14 +10,14 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/login")
-public class LoginController {
+public class UsuarioController {
 
     @Autowired
-    private LoginRepository loginRepository;
+    private UsuarioRepository usuarioRepository;
 
     @PostMapping
-    public void save(@RequestBody  @Valid  LoginRequest loginRequest){
-            loginRepository.save(loginRequest.toModel());
+    public void save(@RequestBody  @Valid UsuarioRequest usuarioRequest){
+            usuarioRepository.save(usuarioRequest.toModel());
 
     }
 }

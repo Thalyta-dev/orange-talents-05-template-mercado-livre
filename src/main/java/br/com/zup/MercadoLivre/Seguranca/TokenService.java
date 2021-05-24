@@ -1,6 +1,6 @@
-package br.com.zup.MercadoLivre.seguranca;
+package br.com.zup.MercadoLivre.Seguranca;
 
-import br.com.zup.MercadoLivre.Login.Login;
+import br.com.zup.MercadoLivre.Login.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,7 +20,7 @@ public class TokenService {
 	private String secret;
 
 	public String gerarToken(Authentication authentication) {
-			Login logado = (Login) authentication.getPrincipal();
+			Usuario logado = (Usuario) authentication.getPrincipal();
 		Date hoje = new Date();
 		Date dataExpiracao = new Date(hoje.getTime() + Long.parseLong(expiration));
 		

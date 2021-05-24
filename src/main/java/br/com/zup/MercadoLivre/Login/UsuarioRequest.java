@@ -5,17 +5,16 @@ package br.com.zup.MercadoLivre.Login;
 
 import br.com.zup.MercadoLivre.Validacoes.UniqueValue;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
-public class LoginRequest {
+public class UsuarioRequest {
 
     @Email
     @NotEmpty
-    @UniqueValue(domainClass = Login.class, fieldName = "email", message = "O email de login já está em uso")
+    @UniqueValue(domainClass = Usuario.class, fieldName = "email", message = "O email de login já está em uso")
     private String email;
 
 
@@ -38,8 +37,8 @@ public class LoginRequest {
         return localDateTime;
     }
 
-    public Login toModel(){
-        return new Login(this.email, new BCryptPasswordEncoder().encode(this.senha), this.localDateTime);
+    public Usuario toModel(){
+        return new Usuario(this.email, new BCryptPasswordEncoder().encode(this.senha), this.localDateTime);
     }
 
 }

@@ -6,12 +6,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
-public class Login  implements UserDetails {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +29,13 @@ public class Login  implements UserDetails {
     private LocalDateTime localDateTime;
 
 
-    public Login(String email, String senha, LocalDateTime localDateTime) {
+    public Usuario(String email, String senha, LocalDateTime localDateTime) {
         this.email = email;
         this.senha =  senha;
         this.localDateTime = localDateTime;
     }
 
-    public Login( ) {
+    public Usuario( ) {
     }
 
     public Long getId() {
@@ -65,7 +63,7 @@ public class Login  implements UserDetails {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Login other = (Login) obj;
+        Usuario other = (Usuario) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

@@ -1,4 +1,4 @@
-package br.com.zup.MercadoLivre.seguranca;
+package br.com.zup.MercadoLivre.Seguranca;
 
 public class TokenDto {
 

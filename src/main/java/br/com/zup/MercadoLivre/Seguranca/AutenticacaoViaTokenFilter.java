@@ -1,7 +1,7 @@
-package br.com.zup.MercadoLivre.seguranca;
+package br.com.zup.MercadoLivre.Seguranca;
 
-import br.com.zup.MercadoLivre.Login.Login;
-import br.com.zup.MercadoLivre.Login.LoginRepository;
+import br.com.zup.MercadoLivre.Login.Usuario;
+import br.com.zup.MercadoLivre.Login.UsuarioRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -15,9 +15,9 @@ import java.io.IOException;
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 	
 	private TokenService tokenService;
-	private LoginRepository repository;
+	private UsuarioRepository repository;
 
-	public AutenticacaoViaTokenFilter(TokenService tokenService, LoginRepository repository) {
+	public AutenticacaoViaTokenFilter(TokenService tokenService, UsuarioRepository repository) {
 		this.tokenService = tokenService;
 		this.repository = repository;
 	}
@@ -37,7 +37,7 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
 	private void autenticarCliente(String token) {
 		Long idUsuario = tokenService.getIdUsuario(token);
-		Login usuario = repository.findById(idUsuario).get();
+		Usuario usuario = repository.findById(idUsuario).get();
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}

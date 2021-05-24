@@ -1,6 +1,6 @@
-package br.com.zup.MercadoLivre.seguranca;
+package br.com.zup.MercadoLivre.Seguranca;
 
-import br.com.zup.MercadoLivre.Login.LoginRepository;
+import br.com.zup.MercadoLivre.Login.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +26,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	private TokenService tokenService;
 	
 	@Autowired
-	private LoginRepository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 	
 	@Override
 	@Bean
@@ -47,6 +47,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/login").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/categorias").permitAll()
+		.antMatchers(HttpMethod.POST, "/caracteristicas").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

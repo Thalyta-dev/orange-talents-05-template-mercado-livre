@@ -1,6 +1,5 @@
 package br.com.zup.MercadoLivre.Categoria;
 
-import br.com.zup.MercadoLivre.Login.Login;
 import br.com.zup.MercadoLivre.Validacoes.ExisteId;
 import br.com.zup.MercadoLivre.Validacoes.UniqueValue;
 

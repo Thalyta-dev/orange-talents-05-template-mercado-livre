@@ -1,7 +1,5 @@
 package br.com.zup.MercadoLivre.Categoria;
 
-import br.com.zup.MercadoLivre.Login.LoginRepository;
-import br.com.zup.MercadoLivre.Login.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

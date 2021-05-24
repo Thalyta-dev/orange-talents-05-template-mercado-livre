@@ -1,7 +1,7 @@
-package br.com.zup.MercadoLivre.seguranca;
+package br.com.zup.MercadoLivre.Seguranca;
 
-import br.com.zup.MercadoLivre.Login.Login;
-import br.com.zup.MercadoLivre.Login.LoginRepository;
+import br.com.zup.MercadoLivre.Login.Usuario;
+import br.com.zup.MercadoLivre.Login.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,11 +14,11 @@ import java.util.Optional;
 public class AutenticacaoService implements UserDetailsService {
 	
 	@Autowired
-	private LoginRepository repository;
+	private UsuarioRepository repository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Login> usuario = repository.findByEmail(username);
+		Optional<Usuario> usuario = repository.findByEmail(username);
 		if (usuario.isPresent()) {
 			return usuario.get();
 		}
