@@ -1,6 +1,7 @@
 package br.com.zup.MercadoLivre.Categoria;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -10,6 +11,8 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @NotNull
     @Column(nullable = true)
     private String nome;
 

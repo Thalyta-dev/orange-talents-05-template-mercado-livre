@@ -5,12 +5,10 @@ package br.com.zup.MercadoLivre.Login;
 
 import br.com.zup.MercadoLivre.Validacoes.UniqueValue;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 public class LoginRequest {
@@ -25,6 +23,7 @@ public class LoginRequest {
     @Length(min = 8, message = "A senha não tem o tamanho necessário de 8 caracters")
     private String senha;
 
+    @PastOrPresent
     private LocalDateTime localDateTime = LocalDateTime.now();
 
     public String getEmail() {
@@ -42,4 +41,5 @@ public class LoginRequest {
     public Login toModel(){
         return new Login(this.email, new BCryptPasswordEncoder().encode(this.senha), this.localDateTime);
     }
+
 }
