@@ -26,6 +26,9 @@ public class Caracteristicas {
         this.descricao = descricao;
     }
 
+    public Caracteristicas() {
+    }
+
     public Caracteristicas(CarasteristcasRequest carasteristcasRequest, Produto produto) {
         this.nome = carasteristcasRequest.getNome();
         this.descricao = carasteristcasRequest.getDescricao();

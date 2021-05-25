@@ -5,6 +5,7 @@ import br.com.zup.MercadoLivre.Categoria.Categoria;
 import br.com.zup.MercadoLivre.Login.Usuario;
 import br.com.zup.MercadoLivre.Produto.Caracteristicas.Caracteristicas;
 import br.com.zup.MercadoLivre.Produto.Caracteristicas.CarasteristcasRequest;
+import br.com.zup.MercadoLivre.Produto.Imagens.Imagens;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
@@ -49,6 +50,20 @@ public class Produto {
     @NotEmpty
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
     private Set<Caracteristicas> caracteristicas;
+
+    @OneToMany
+    private List<Imagens> imagens;
+
+    public List<Imagens> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<Imagens> imagens) {
+        this.imagens = imagens;
+    }
+
+    public Produto() {
+    }
 
     public Produto(String nome, BigDecimal valor, Integer quantidade,
                    String descricao, Categoria categoria, Set<CarasteristcasRequest> caracteristicas, Usuario usuario) {
