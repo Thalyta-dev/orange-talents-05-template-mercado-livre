@@ -1,5 +1,7 @@
 package br.com.zup.MercadoLivre.Produto.Imagens;
 
+import br.com.zup.MercadoLivre.Produto.Produto;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
