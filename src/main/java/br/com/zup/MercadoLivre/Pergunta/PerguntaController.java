@@ -1,6 +1,7 @@
-package br.com.zup.MercadoLivre.Opnião;
+package br.com.zup.MercadoLivre.Pergunta;
 
 
+import br.com.zup.MercadoLivre.Categoria.CategoriaRequest;
 import br.com.zup.MercadoLivre.Login.Usuario;
 import br.com.zup.MercadoLivre.Produto.Produto;
 import br.com.zup.MercadoLivre.Produto.ProdutoRepository;
@@ -11,30 +12,30 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
 import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/opnioes")
-public class OpniaoController {
+@RequestMapping("/perguntas")
+public class PerguntaController {
 
     @Autowired
-    private OpniaoRepository opniaoRepository;
+    private  PerguntaRepository perguntaRepository;
 
     @Autowired
     private ProdutoRepository produtoRepository;
 
     @PostMapping("/{id}")
-    public ResponseEntity<?> save(@Valid @RequestBody OpniaoRequest opniaoRequest, @PathVariable Long id, @AuthenticationPrincipal Usuario usuario){
+    public ResponseEntity<?> save(@RequestBody @Valid PerguntaRequest perguntaRequest, @AuthenticationPrincipal Usuario usuario, @PathVariable Long id, Email enviarEmailServer){
 
         Optional<Produto> produto = produtoRepository.findById(id);
 
         if(produto.isEmpty()){
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrosDto("Produto","Produto não existe"));
         }
-        opniaoRepository.save(opniaoRequest.toModel(produtoRepository, usuario, produto.get()));
-        return  ResponseEntity.status(HttpStatus.OK).build();
+       Pergunta pergunta= perguntaRepository.save(perguntaRequest.toModel(usuario,produto.get()));
+
+        return  ResponseEntity.status(HttpStatus.OK).body( enviarEmailServer.enviarEmail(pergunta));
+
     }
 }

@@ -27,7 +27,7 @@ public class Produto {
 
     @ManyToOne
     @NotNull
-    Usuario usuario;
+    Usuario vendedor;
 
     @NotBlank
     private String nome;
@@ -65,14 +65,24 @@ public class Produto {
     public Produto() {
     }
 
+    @Override
+    public String toString() {
+        return  vendedor.toString();
+
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
     public Produto(String nome, BigDecimal valor, Integer quantidade,
-                   String descricao, Categoria categoria, Set<CarasteristcasRequest> caracteristicas, Usuario usuario) {
+                   String descricao, Categoria categoria, Set<CarasteristcasRequest> caracteristicas, Usuario vendedor) {
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
         this.descricao = descricao;
         this.categoria = categoria;
         this.caracteristicas = caracteristicas.stream().map(o -> new Caracteristicas(o, this)).collect(Collectors.toSet());;
-        this.usuario = usuario;
+        this.vendedor = vendedor;
     }
 }

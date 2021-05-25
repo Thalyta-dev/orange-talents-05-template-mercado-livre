@@ -38,6 +38,11 @@ public class Usuario implements UserDetails {
     public Usuario( ) {
     }
 
+    @Override
+    public String toString() {
+        return email ;
+    }
+
     public Long getId() {
         return  this.id;
     }
