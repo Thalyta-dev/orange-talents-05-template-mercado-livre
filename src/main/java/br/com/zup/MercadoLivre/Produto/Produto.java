@@ -67,6 +67,10 @@ public class Produto {
         return id;
     }
 
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
     public List<Pergunta> getPerguntas() {
         return perguntas;
     }
@@ -75,9 +79,6 @@ public class Produto {
         return imagens;
     }
 
-    public void setImagens(List<Imagens> imagens) {
-        this.imagens = imagens;
-    }
 
     public Produto() {
     }
@@ -127,5 +128,17 @@ public class Produto {
         this.vendedor = vendedor;
     }
 
+    public boolean existQuantidadeProdutoAndRetira(Integer quantidadeProduto){
+
+        if(this.quantidade >= quantidadeProduto){
+
+          this.quantidade =  this.quantidade - quantidadeProduto;
+
+          return true;
+
+        }
+
+        return false;
+    }
 
 }

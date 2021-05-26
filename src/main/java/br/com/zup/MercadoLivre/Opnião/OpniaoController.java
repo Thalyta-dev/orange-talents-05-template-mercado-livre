@@ -25,7 +25,6 @@ public class OpniaoController {
     private ProdutoRepository produtoRepository;
 
     @PostMapping("/{id}")
-    @Transactional
     public ResponseEntity<?> save(@Valid @RequestBody OpniaoRequest opniaoRequest, @PathVariable Long id, @AuthenticationPrincipal Usuario usuario){
 
         Optional<Produto> produto = produtoRepository.findById(id);

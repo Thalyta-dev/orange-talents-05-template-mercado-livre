@@ -1,16 +1,17 @@
 package br.com.zup.MercadoLivre.Pergunta;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Email implements  EnviarEmailServer{
 
     @Override
-    public String enviarEmail(Pergunta pergunta) {
+    public String enviarEmail(String remetente, String destinatario, String assunto, String corpo) {
 
-        return "De: " + pergunta.getUsuario().toString() + "\n"
-                + "Para: " + pergunta.getProduto().toString() + "\n"
-                + "Assunto: Uma pergunta foi adicionada ao produto " + pergunta.getProduto().getNome() + "\n"
-                + "Titulo da pergunta: " + pergunta.getTitulo() + "\n"
-                + "Descrição: " + pergunta.getDescricao() + "\n"
-                + "Data da pergunta: A pegunta foi feita ás " + pergunta.getDateTime().getHour() + "h:" + pergunta.getDateTime().getMinute()  + ", " +pergunta.getDateTime().getDayOfMonth()+"/" +pergunta.getDateTime().getMonth() + "\n";
+        return "De: " + remetente+ "\n"
+                + "Para: " + destinatario + "\n"
+                + "Assunto: " + assunto + "\n"
+                + "Corpo do email: " + corpo;
 
     }
 }

@@ -1,12 +1,9 @@
 package br.com.zup.MercadoLivre.Produto;
 
-import br.com.zup.MercadoLivre.Categoria.Categoria;
+
 import br.com.zup.MercadoLivre.Login.UsuarioResponse;
-import br.com.zup.MercadoLivre.Opnião.Opniao;
 import br.com.zup.MercadoLivre.Opnião.OpniaoResponse;
-import br.com.zup.MercadoLivre.Pergunta.Pergunta;
 import br.com.zup.MercadoLivre.Pergunta.PerguntaResponse;
-import br.com.zup.MercadoLivre.Produto.Caracteristicas.Caracteristicas;
 import br.com.zup.MercadoLivre.Produto.Caracteristicas.CaracteristicasReponse;
 import br.com.zup.MercadoLivre.Produto.Imagens.ImagemResponse;
 import br.com.zup.MercadoLivre.Produto.Imagens.Imagens;

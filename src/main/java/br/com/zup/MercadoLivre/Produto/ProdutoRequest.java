@@ -73,4 +73,7 @@ public class ProdutoRequest {
     public Set<CarasteristcasRequest> getCaracteristicas() {
         return caracteristicas;
     }
+
+
+
 }

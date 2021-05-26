@@ -18,7 +18,6 @@ public class Opniao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @NotNull
     @ManyToOne
     private Usuario usuario;
