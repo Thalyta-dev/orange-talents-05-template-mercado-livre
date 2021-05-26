@@ -27,7 +27,6 @@ public class ControllerProduto {
     @Autowired
     private ImagemRepository imagemRepository;
 
-
     @Autowired
     private CategoriaRepository categoriaRepository;
 
@@ -37,7 +36,6 @@ public class ControllerProduto {
 
     }
 
-    @Transactional
     @PutMapping("/{id}")
     public ResponseEntity<?> save(@Valid ImagensRequest insereImagensRequest, @PathVariable Long id, @AuthenticationPrincipal Usuario usuario, salvaImagem imagem){
 
@@ -54,11 +52,26 @@ public class ControllerProduto {
 
         }
 
-        List<Imagens> imagens = (List<Imagens>) imagemRepository.saveAll(insereImagensRequest.toModel(imagem));
+        List<Imagens> imagens = (List<Imagens>) imagemRepository.saveAll(insereImagensRequest.toModel(imagem, produto.get()));
 
-        produto.get().setImagens(imagens);
+        produto.get().getImagens().addAll(imagens);
 
         return ResponseEntity.ok(produto.get().getImagens().stream().map(ImagemResponse::new).collect(Collectors.toList()));
+
+
+    }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getProduto(@PathVariable Long id){
+
+        Optional<Produto>  produto = produtoRepository.findById(id);
+
+        if(produto.isEmpty()) {
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrosDto("Produto","Produto não existe"));
+        }
+
+        return ResponseEntity.ok(produto.stream().map(o -> new ProdutoResponse(produto.get(),produtoRepository)).collect(Collectors.toList()));
 
 
     }

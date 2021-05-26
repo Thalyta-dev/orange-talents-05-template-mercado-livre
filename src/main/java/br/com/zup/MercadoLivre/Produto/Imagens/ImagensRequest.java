@@ -1,6 +1,8 @@
 package br.com.zup.MercadoLivre.Produto.Imagens;
 
 
+import br.com.zup.MercadoLivre.Produto.Produto;
+import br.com.zup.MercadoLivre.Produto.ProdutoRepository;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -9,6 +11,7 @@ import javax.validation.constraints.Size;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ImagensRequest {
@@ -30,11 +33,12 @@ public class ImagensRequest {
 
     }
 
-    public List<Imagens> toModel(UparImagem save) {
+    public List<Imagens> toModel(UparImagem save, Produto produto) {
 
-       return this.multipartFiles.stream().map(o -> {
+
+        return this.multipartFiles.stream().map(o -> {
            try {
-               return new Imagens( o.getOriginalFilename(),TransformaImg(o),save.saveImagem(o) );
+               return new Imagens( o.getOriginalFilename(),TransformaImg(o),save.saveImagem(o), produto );
            } catch (IOException e) {
                e.printStackTrace();
            }

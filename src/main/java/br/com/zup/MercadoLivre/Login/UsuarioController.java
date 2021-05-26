@@ -17,6 +17,7 @@ public class UsuarioController {
 
     @PostMapping
     public void save(@RequestBody  @Valid UsuarioRequest usuarioRequest){
+
             usuarioRepository.save(usuarioRequest.toModel());
 
     }

@@ -20,8 +20,6 @@ public class Pergunta {
     @NotBlank
     private String titulo;
 
-
-
     @NotBlank
     private String descricao;
 
@@ -31,6 +29,10 @@ public class Pergunta {
     @ManyToOne
     private Usuario usuario;
 
+    @NotNull
+    @ManyToOne
+    private Produto produto;
+
     public String getTitulo() {
         return titulo;
     }
@@ -38,6 +40,7 @@ public class Pergunta {
     public LocalDateTime getDateTime() {
         return dateTime;
     }
+
     public String getDescricao() {
         return descricao;
     }
@@ -49,9 +52,6 @@ public class Pergunta {
         return produto;
     }
 
-    @NotNull
-    @ManyToOne
-    private Produto produto;
 
     public Pergunta(String titulo, Usuario usuario, Produto produto, String descricao) {
 
@@ -62,6 +62,10 @@ public class Pergunta {
         this.descricao = descricao;
     }
 
+
+    public Pergunta( ) {
+
     }
+}
 
 

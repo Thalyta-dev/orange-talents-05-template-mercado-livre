@@ -1,8 +1,9 @@
 package br.com.zup.MercadoLivre.Categoria;
 
+import br.com.zup.MercadoLivre.Produto.Caracteristicas.CaracteristicasReponse;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 public class Categoria {
@@ -22,11 +23,24 @@ public class Categoria {
     public Categoria() {
     }
 
+
     public Categoria(String nome) {
         this.nome = nome;
+    }
+
+    public Categoria getCategoriaMae() {
+        return categoriaMae;
+    }
+
+    public String getNome() {
+        return  this.nome;
     }
 
     public void setCategoriaMae(Categoria categoriaMae) {
         this.categoriaMae = categoriaMae;
     }
+
+
+
+
 }

@@ -17,6 +17,7 @@ public class CategoriaController {
 
     @PostMapping
     public void save(@RequestBody  @Valid CategoriaRequest categoriaRequest){
+
             categoriaRepository.save(categoriaRequest.toModel(categoriaRepository));
 
     }

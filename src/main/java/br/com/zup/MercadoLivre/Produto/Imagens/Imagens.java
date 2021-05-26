@@ -16,7 +16,12 @@ public class Imagens {
     @NotNull
     private  String nome;
 
+    @NotNull
     private String url;
+
+
+    @ManyToOne
+    private Produto produto;
 
     public String getUrl() {
         return url;
@@ -32,11 +37,17 @@ public class Imagens {
         return nome;
     }
 
-    public Imagens(String nome, String imagem, String url) {
+    public Imagens(String nome, String imagem, String url, Produto produto) {
+
         this.imagem = imagem;
         this.nome = nome;
         this.url = url;
+        this.produto = produto;
 
+    }
+
+    public  ImagemResponse toResponse(){
+       return new ImagemResponse(this);
     }
 
 

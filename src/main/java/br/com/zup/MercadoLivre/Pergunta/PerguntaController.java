@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class PerguntaController {
     private ProdutoRepository produtoRepository;
 
     @PostMapping("/{id}")
+    @Transactional
     public ResponseEntity<?> save(@RequestBody @Valid PerguntaRequest perguntaRequest, @AuthenticationPrincipal Usuario usuario, @PathVariable Long id, Email enviarEmailServer){
 
         Optional<Produto> produto = produtoRepository.findById(id);
@@ -35,6 +37,7 @@ public class PerguntaController {
         }
        Pergunta pergunta= perguntaRepository.save(perguntaRequest.toModel(usuario,produto.get()));
 
+        produto.get().getPerguntas().add(pergunta);
         return  ResponseEntity.status(HttpStatus.OK).body( enviarEmailServer.enviarEmail(pergunta));
 
     }

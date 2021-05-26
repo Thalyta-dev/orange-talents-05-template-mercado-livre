@@ -10,9 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -27,6 +25,7 @@ public class OpniaoController {
     private ProdutoRepository produtoRepository;
 
     @PostMapping("/{id}")
+    @Transactional
     public ResponseEntity<?> save(@Valid @RequestBody OpniaoRequest opniaoRequest, @PathVariable Long id, @AuthenticationPrincipal Usuario usuario){
 
         Optional<Produto> produto = produtoRepository.findById(id);
@@ -34,7 +33,8 @@ public class OpniaoController {
         if(produto.isEmpty()){
             return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrosDto("Produto","Produto não existe"));
         }
-        opniaoRepository.save(opniaoRequest.toModel(produtoRepository, usuario, produto.get()));
+
+        produto.get().getOpniao().add(opniaoRepository.save(opniaoRequest.toModel(produtoRepository, usuario, produto.get())));
         return  ResponseEntity.status(HttpStatus.OK).build();
     }
 }

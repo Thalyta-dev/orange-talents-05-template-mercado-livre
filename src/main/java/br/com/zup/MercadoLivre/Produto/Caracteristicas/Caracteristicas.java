@@ -21,6 +21,7 @@ public class Caracteristicas {
 
     @ManyToOne
     private Produto produto;
+
     public Caracteristicas(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
@@ -35,5 +36,15 @@ public class Caracteristicas {
         this.produto = produto;
     }
 
+    public String getNome() {
+        return nome;
+    }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
 }

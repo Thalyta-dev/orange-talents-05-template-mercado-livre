@@ -31,8 +31,7 @@ public class Opniao {
     private String titulo;
 
     @Column(columnDefinition = "tinyint")
-    @Range(min = 1, max = 5)
-    private byte nota;
+    private @Range(min = 1, max = 5) Integer nota;
 
     @NotBlank
     @Length(max = 500)
@@ -41,11 +40,23 @@ public class Opniao {
     public Opniao() {
     }
 
-    public Opniao(Usuario usuario, Produto produto, String titulo, byte nota, String descricao) {
+    public Opniao(Usuario usuario, Produto produto, String titulo, @Range(min = 1, max = 5) Integer nota, String descricao) {
         this.usuario = usuario;
         this.produto = produto;
         this.titulo = titulo;
         this.nota = nota;
         this.descricao = descricao;
+    }
+
+    public  Integer getNota() {
+        return nota;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public String getTitulo() {
+        return this.titulo;
     }
 }
