@@ -16,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -52,7 +53,7 @@ public class Produto {
 
     @NotEmpty
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
-    private Set<Caracteristicas> caracteristicas;
+    private Set<Caracteristicas> caracteristicas = new HashSet<>();
 
     @OneToMany(mappedBy = "produto")
     private List<Opniao> opniao;

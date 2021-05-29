@@ -48,6 +48,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.POST, "/api/login").permitAll()
 		.antMatchers(HttpMethod.POST, "/api/categorias").permitAll()
 		.antMatchers(HttpMethod.POST, "/caracteristicas").permitAll()
+		.antMatchers(HttpMethod.POST, "/gerarNfs").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

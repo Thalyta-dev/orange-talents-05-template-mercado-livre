@@ -13,7 +13,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -40,7 +42,8 @@ public class ProdutoRequest {
     private Long categoria;
 
     @NotEmpty
-    private Set<CarasteristcasRequest> caracteristicas;
+    @Size(min =3)
+    private Set<CarasteristcasRequest> caracteristicas = new HashSet<>();;
 
     public Produto toModel(CategoriaRepository categoriaRepository,Usuario usuario){
         Optional<Categoria> categoria = categoriaRepository.findById(this.categoria);

@@ -1,7 +1,5 @@
 package br.com.zup.MercadoLivre.Categoria;
 
-import br.com.zup.MercadoLivre.Produto.Caracteristicas.CaracteristicasReponse;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 

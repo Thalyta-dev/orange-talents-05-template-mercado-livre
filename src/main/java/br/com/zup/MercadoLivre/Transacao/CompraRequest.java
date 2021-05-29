@@ -1,15 +1,12 @@
-package br.com.zup.MercadoLivre.Compra;
+package br.com.zup.MercadoLivre.Transacao;
 
 import br.com.zup.MercadoLivre.Login.Usuario;
 import br.com.zup.MercadoLivre.Produto.Produto;
-import org.hibernate.validator.constraints.Length;
+import br.com.zup.MercadoLivre.Transacao.Compra;
 import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 
 public class CompraRequest {
 
@@ -19,7 +16,7 @@ public class CompraRequest {
     private Integer quantidadeProduto;
 
     @NotNull
-    private  MetodoPagamento metodoPagamento;
+    private MetodoPagamento metodoPagamento;
 
     public CompraRequest(Integer quantidadeProduto, MetodoPagamento metodoPagamento) {
         this.quantidadeProduto = quantidadeProduto;

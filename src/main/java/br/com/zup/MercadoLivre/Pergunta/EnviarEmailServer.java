@@ -7,4 +7,5 @@ import org.springframework.stereotype.Component;
 public interface EnviarEmailServer {
 
     public String enviarEmail(String remetente, String destinatario, String assunto, String corpo);
+
 }

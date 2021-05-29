@@ -2,7 +2,6 @@ package br.com.zup.MercadoLivre.Produto;
 
 import br.com.zup.MercadoLivre.Categoria.CategoriaRepository;
 import br.com.zup.MercadoLivre.Login.Usuario;
-
 import br.com.zup.MercadoLivre.Produto.Imagens.*;
 import br.com.zup.MercadoLivre.TratandoErros.ErrosDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;

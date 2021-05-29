@@ -1,4 +1,4 @@
-package br.com.zup.MercadoLivre.Compra;
+package br.com.zup.MercadoLivre.Transacao;
 
 public enum Status {
     INICIADO,
