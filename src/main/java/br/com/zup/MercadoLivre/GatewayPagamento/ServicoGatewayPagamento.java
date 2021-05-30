@@ -1,6 +1,7 @@
 package br.com.zup.MercadoLivre.GatewayPagamento;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,13 @@ public class ServicoGatewayPagamento {
 
         PagSeguro pagSeguro = new PagSeguro(retornaIdTransacao(), status);
 
-       return   transacaoController.pagseguro(pagSeguro,id,request.getHeader("Authorization"));
+        ResponseEntity<String>  retorno = transacaoController.pagseguro(pagSeguro, id, request.getHeader("Authorization" ));
+
+        if (retorno.getStatusCode() != HttpStatus.OK){
+            return  ResponseEntity.status(retorno.getStatusCode()).body(retorno.getBody());
+        }
+
+        return retorno;
 
     }
 
@@ -44,7 +51,14 @@ public class ServicoGatewayPagamento {
 
         PayPal payPal = new PayPal(retornaIdTransacao(), status);
 
-        return   transacaoController.payPal(payPal,id,request.getHeader("Authorization"));
+        ResponseEntity<String>  retorno = transacaoController.payPal(payPal,id,request.getHeader("Authorization"));
+
+        if (retorno.getStatusCode() != HttpStatus.OK){
+            System.out.println("olá");
+            return  ResponseEntity.status(retorno.getStatusCode()).body(retorno.getBody());
+        }
+
+        return retorno;
 
     }
     public Long retornaIdTransacao(){
@@ -58,6 +72,8 @@ public class ServicoGatewayPagamento {
 
 
     public Boolean retornaStatus(){
+
+        System.out.println("olá");
 
         Random random = new Random();
 

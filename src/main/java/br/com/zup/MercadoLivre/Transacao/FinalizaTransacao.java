@@ -5,9 +5,11 @@ import br.com.zup.MercadoLivre.NF.ServicoParaGerarNF;
 import br.com.zup.MercadoLivre.Pergunta.Email;
 import br.com.zup.MercadoLivre.RankingVendedor.RankingVendedorDto;
 import br.com.zup.MercadoLivre.RankingVendedor.ServicoParaEnviarRankingVendedor;
+import com.fasterxml.jackson.core.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +24,6 @@ public class FinalizaTransacao {
 
     @Autowired
     private ServicoParaEnviarRankingVendedor rankingVendedor;
-
 
     public ResponseEntity<?> transacao(Transacao transacao, HttpServletRequest request) {
 
@@ -47,10 +48,12 @@ public class FinalizaTransacao {
         } else {
 
 
+
             String email = enviarEmailServer.enviarEmail(transacao.getCompra().getComprador().getUsername(),
                     transacao.getCompra().getProduto().getVendedor().getUsername(),
                     "A compra do produto " + transacao.getCompra().getProduto().getNome() + " não foi finalizada com sucesso ",
-                    "A sua transação na plataforma " + transacao.getCompra().getMetodoPagamento() + " não foi realizada com sucesso, mas para tentar novamente acesse a url: "
+                    "A sua transação na plataforma " + transacao.getCompra().getMetodoPagamento() + " não foi realizada com sucesso, mas para tentar novamente acesse a url: /gateway/retorno-" +transacao.getCompra().getMetodoPagamento().retornaUrl(transacao.getCompra()) //transacao.getCompra().getMetodoPagamento()./{id}").buildAndExpand(transacao.getCompra().getId()).toString()
+
             );
 
             return ResponseEntity.ok().body(email);

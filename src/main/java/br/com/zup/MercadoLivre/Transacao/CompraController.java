@@ -53,7 +53,7 @@ public class CompraController {
         String email = enviarEmailServer.enviarEmail(usuario.getUsername(), produto.get().getVendedor().getUsername(), "Uma venda foi realizada", "o produto " + produto.get().getNome() + "foi vendido");
 
 
-        return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT).location(compra.getMetodoPagamento().retornaUrl(compra,uriBuilder)).body(email);
+        return ResponseEntity.status(HttpStatus.TEMPORARY_REDIRECT).location(compra.getMetodoPagamento().retornaUrl(compra)).body(email);
 
     }
 }

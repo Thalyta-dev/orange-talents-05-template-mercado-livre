@@ -1,6 +1,5 @@
 package br.com.zup.MercadoLivre.Transacao;
 
-import br.com.zup.MercadoLivre.Transacao.Compra;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -10,9 +9,9 @@ public enum MetodoPagamento {
     PAYPAL{
 
         @Override
-        URI retornaUrl(Compra compra, UriComponentsBuilder uriComponentsBuilder) {
+        URI retornaUrl(Compra compra) {
 
-            URI uri = uriComponentsBuilder.path("/gateway/retorno-paypal/{id}").buildAndExpand(compra.getId()).toUri();
+            URI uri = UriComponentsBuilder.fromUriString("/gateway/retorno-paypal/{id}").buildAndExpand(compra.getId()).toUri();
             return uri ;
 
         }
@@ -21,14 +20,14 @@ public enum MetodoPagamento {
     PAGSEGURO{
 
         @Override
-        URI retornaUrl(Compra compra, UriComponentsBuilder uriComponentsBuilder) {
-            URI uri = uriComponentsBuilder.path("/gateway/retorno-pagseguro/{id}").buildAndExpand(compra.getId()).toUri();
+        URI retornaUrl(Compra compra) {
+            URI uri = UriComponentsBuilder.fromUriString("/gateway/retorno-pagseguro/{id}").buildAndExpand(compra.getId()).toUri();
             return uri;
         }
 
     };
 
-    abstract URI retornaUrl(Compra compra, UriComponentsBuilder uriComponentsBuilder);
+    abstract URI retornaUrl(Compra compra);
 
 
 }
